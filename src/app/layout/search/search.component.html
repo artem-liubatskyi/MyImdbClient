@@ -1,0 +1,15 @@
+<form ng-submit="submit()" class="form-inline">
+  <input [formControl]="findControl" class="form-control" placeholder="Search">
+  <button (click)="submit()" class="btn btn-outline-success">Search</button>
+</form>
+<div class="serch-results">
+  <div class="search-result-item" *ngFor="let movie of movies$ | async">
+    <a (click)="submit()" [routerLink]="[ '/movie', movie.id ]">
+      <img class="search-result-img" src="{{movie.imageUrl}}">
+      <div class="search-result-label">
+        <span class="search-result-title ">{{movie.title}}</span>
+        <div class="search-result-detail">Year: {{movie.year}}</div>
+      </div>
+    </a>
+  </div>
+</div>

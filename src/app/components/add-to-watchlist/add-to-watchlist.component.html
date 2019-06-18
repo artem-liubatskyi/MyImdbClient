@@ -1,0 +1,8 @@
+<div *ngIf="authService.isAuthenticated()">
+    <div *ngIf="exist">
+        <button (click)="onClick()">Remove</button>
+    </div>
+    <div *ngIf="!exist">
+        <button (click)="onClick()">Add</button>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+<div *ngIf="person$ | async as MoviePerson">
+  <div class="full">
+    <div class="full-img"><img src="{{MoviePerson.imageUrl}}"></div>
+    <div class="full-title">
+      <h3>{{MoviePerson.fullName}}</h3>
+    </div>
+    <ul class="full-items">
+      <li>Birth: <b>{{MoviePerson.dateOfBirth}}</b></li>
+      <li>Country: <b>{{MoviePerson.country}}</b></li>
+      <li>
+        <div class="short-text">
+          {{MoviePerson.biography}}
+          <br>
+          <br>
+        </div>
+      </li>
+      <li>Movies:
+        <a *ngFor="let movie of MoviePerson.movies" [routerLink]="[ '/movie', movie.id ]">
+          <b>{{movie.title}}</b>
+        </a>
+      </li>
+    </ul>
+  </div>

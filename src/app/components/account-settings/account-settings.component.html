@@ -1,0 +1,98 @@
+<h2 class="header"><b>Account settings</b></h2>
+<div class="container">
+<li>
+  <h3>Password</h3>
+  <p>Select uniq password to protect your account</p>
+  <div class="dropdown">Edit
+  <div class="form-group dropdown-content">
+      <form [formGroup]="changePasswordForm" (click)="click()" (ngSubmit)="onPasswordSubmit()">
+
+        <div class="form-group">
+         <label for="old password">Input old password</label>
+         <input type="password" formControlName="oldPassword" class="form-control" 
+               [ngClass]="{ 'is-invalid': submitted && passForm.oldPassword.errors }" />
+            <div *ngIf="submitted && passForm.oldPassword.errors" class="invalid-feedback">
+              <div *ngIf="passForm.oldPassword.errors.required">Password is required</div>
+           </div>
+        </div>
+
+        <div class="form-group">
+        <label for="new password">Input new password</label>
+        <input type="password" formControlName="newPassword" class="form-control" 
+               [ngClass]="{ 'is-invalid': submitted && passForm.newPassword.errors }" />
+            <div *ngIf="submitted && passForm.newPassword.errors" class="invalid-feedback">
+                <div *ngIf="passForm.newPassword.errors.required">Password is required</div>
+                <div *ngIf="passForm.newPassword.errors.minlength">Password must be at least 6 characters</div>
+            </div>
+        
+        </div>
+
+        <div class="form-group">
+          <label for="new password confirm">Input new password again</label>
+          <input type="password" formControlName="newPasswordConfirm" class="form-control" 
+                [ngClass]="{ 'is-invalid': submitted && passForm.newPasswordConfirm.errors }" />
+            <div *ngIf="submitted && passForm.newPasswordConfirm.errors" class="invalid-feedback">
+                <div *ngIf="passForm.newPasswordConfirm.errors.required">Password is required</div>
+                <div *ngIf="!samePass()">Passwords don't match</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+          <button [disabled]="loading" class="btn btn-primary">Submit</button>
+          <img *ngIf="loading" src="" />
+        </div>
+
+      </form>
+    </div>
+  </div>
+</li>
+</div>
+
+<div class="container">
+<li>
+    <h3>Login</h3>
+    <p>Edit login</p>
+    <div class="dropdown">Edit
+      <div class="form-group dropdown-content">
+          <form [formGroup]="changeLoginForm" (ngSubmit)="onLoginSubmit()">
+              <div class="form-group">
+              <label>Input new login</label>
+                <input formControlName="newLogin" class="form-control" type="text"
+                  [ngClass]="{ 'is-invalid': submitted && loginForm.newLogin.errors }">
+                <div *ngIf="submitted && loginForm.newLogin.errors" class="invalid-feedback">
+                    <div *ngIf="loginForm.newLogin.errors.required">Value is required</div>
+                 </div>
+                </div>
+                <div class="form-group">
+                    <button [disabled]="loading" class="btn btn-primary">Submit</button>
+                    <img *ngIf="loading" src="" />
+                  </div>
+            </form>
+      </div>
+    </div>
+  </li>
+</div>
+<div class="container">
+    <li>
+        <h3>Name</h3>
+        <p>Edit name</p>
+        <div class="dropdown">Edit
+          <div class="form-group dropdown-content">
+              <form [formGroup]="changeNameForm" (ngSubmit)="onNameSubmit()">
+              <div class="form-group">
+                <label>Input new name</label>
+                  <input formControlName="newName" class="form-control" type="text"
+                    [ngClass]="{ 'is-invalid': submitted && nameForm.newName.errors }">
+                  <div *ngIf="submitted && nameForm.newName.errors" class="invalid-feedback">
+                      <div *ngIf="nameForm.newName.errors.required">Value is required</div>
+                   </div>
+                  </div>
+                  <div class="form-group">
+                      <button [disabled]="loading" class="btn btn-primary">Submit</button>
+                      <img *ngIf="loading" src="" />
+                    </div>              
+              </form>
+        </div>
+      </div>
+    </li>
+</div>

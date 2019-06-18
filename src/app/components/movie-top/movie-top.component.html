@@ -1,0 +1,23 @@
+<h2>Top Rated Movies</h2>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Rank & title</th>
+      <th scope="col">Rating</th>
+      <th scope="col">Your rating</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let movie of top$ | async">
+      <td><img style="width: 65px; height:95px;" src="{{movie.imageUrl}}"></td>
+      <td><a class="card-title" [routerLink]="[ '/movie', movie.id ]">
+          {{movie.title}} ({{movie.year}})</a></td>
+      <td>{{movie.averageRate}}</td>
+      <td>
+        <app-rate [movieId]="movie.id" [rate]="movie.usersRate"></app-rate>
+        <app-add-to-watchlist [exist]="movie.isInWatchlist" [movieId]="movie.id"></app-add-to-watchlist>
+      </td>
+    </tr>
+  </tbody>
+</table>

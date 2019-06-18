@@ -1,0 +1,13 @@
+table {
+    counter-reset: 1;
+  }
+  table td{
+    vertical-align: middle;
+  }
+  table tr {
+    counter-increment: row;
+  }
+  table td:nth-child(2)::before
+  {
+    content: counter(row) ". ";
+  }
