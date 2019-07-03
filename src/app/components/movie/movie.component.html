@@ -1,34 +1,39 @@
-<div *ngIf="data$ | async as movie">
-  <div class="full">
-    <div class="full-img"><img src="{{movie.imageUrl}}"></div>
-    <div class="full-title">
-      <h3>{{movie.title}}</h3>
-    </div>
-    <ul class="full-items">
-      <li>Year: <b>{{movie.year}}</b></li>
-      <li>Countries: <b *ngFor="let country of movie.countries">{{country}}</b></li>
-      <li>Genres: <b *ngFor="let genre of movie.genres">{{genre}}</b></li>
-      <li>Average rate: <b>{{movie.averageRate}}</b></li>
-      <li>Your rate: <app-rate [movieId]="movie.id" [rate]="movie.usersRate"></app-rate>
-        <app-add-to-watchlist [exist]="movie.isInWatchlist" [movieId]="movie.id">
-        </app-add-to-watchlist>
-      </li>
-      <li>Directors:
-        <a *ngFor="let director of movie.directors" [routerLink]="[ '/person', director.id ]">
-          <b>{{director.fullName}}</b>
-        </a>
-      </li>
-      <li>Stars:
-        <a *ngFor="let star of movie.stars" [routerLink]="[ '/person', star.id ]">
-          <b>{{star.fullName}}</b>
-        </a>
-      </li>
-      <li>
-        <div class="short-text">
-          {{movie.description}}
-          <br>
-          <br>
-        </div>
-      </li>
-    </ul>
+<div class="content-wrapper" *ngIf="movie">
+  <div class="full-img">
+    <img src="{{movie.imageUrl}}">
   </div>
+  <div class="title_block">
+    <div class="title_wrapper">
+      <h1 class="">{{movie.title}} ({{movie.year}})</h1>
+    </div>
+    <div class="description">
+      {{movie.runtime}}
+      | <span *ngFor="let country of movie.countries">{{country}}</span>
+      | <span *ngFor="let genre of movie.genres">{{genre}}</span>
+    </div>
+  </div>
+  <iframe width="560" height="315" [src]='trailerUrl()' frameborder="0" allow="autoplay; encrypted-media"
+    allowfullscreen>
+  </iframe>
+  <ul class="full-items">
+    <li>
+      <div class="short-text">
+        {{movie.description}}
+      </div>
+    </li>
+    <li><b>Budget: </b> <span style="color: white">{{movie.budget}}</span>$</li>
+    <app-rate [movieId]="movie.id" [rate]="movie.usersRate"></app-rate>
+    <app-add-to-watchlist [exist]="movie.isInWatchlist" [movieId]="movie.id">
+    </app-add-to-watchlist>
+    <li><b>Directors:</b>
+      <a *ngFor="let director of movie.directors" [routerLink]="[ '/person', director.id ]">
+        <b>{{director.fullName}}</b>
+      </a>
+    </li>
+    <li><b>Stars:</b>
+      <a *ngFor="let star of movie.stars" [routerLink]="[ '/person', star.id ]">
+        <b>{{star.fullName}}</b>
+      </a>
+    </li>
+  </ul>
+</div>

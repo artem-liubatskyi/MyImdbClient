@@ -13,4 +13,7 @@ export class Movie {
     stars: Person[];
     countries: string[];
     isInWatchlist: boolean;
+    runtime : number;
+    budget: number;
+    trailerUrl: string;
 }
