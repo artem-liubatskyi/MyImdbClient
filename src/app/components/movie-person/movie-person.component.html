@@ -1,5 +1,5 @@
-<div *ngIf="person$ | async as MoviePerson">
-  <div class="full">
+<div class="content-wrapper">
+  <div *ngIf="person$ | async as MoviePerson">
     <div class="full-img"><img src="{{MoviePerson.imageUrl}}"></div>
     <div class="full-title">
       <h3>{{MoviePerson.fullName}}</h3>
@@ -10,8 +10,6 @@
       <li>
         <div class="short-text">
           {{MoviePerson.biography}}
-          <br>
-          <br>
         </div>
       </li>
       <li>Movies:
@@ -21,3 +19,4 @@
       </li>
     </ul>
   </div>
+</div>

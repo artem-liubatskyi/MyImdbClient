@@ -13,15 +13,13 @@
     line-height: 17px;
 }
 
-.full-img {
-    position: relative;
-    top: 7px; left: 0px;
-    width: 265px;
-    height: 365px;
+.full-img {  
+    width: 275px;
+    height: 410px;
     overflow: hidden;
     float: left;
-    margin-right: 34px;
-    margin-bottom: 34px;
+    margin-right: 24px;
+    margin-bottom: 20px;
 }
 
 .full-img img {
@@ -29,7 +27,6 @@
 }
 
 .full-title {
-    color: #000;
     font-size: 28px;
     font-weight: bold;
     line-height: 33px;
@@ -48,7 +45,7 @@
 
 .full-items {
     font-size: 15px;
-    color: #4d4d4d;
+    color: white;
     padding-bottom: 22px;
     float: left;
     width: 523px;

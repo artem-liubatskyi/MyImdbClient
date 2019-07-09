@@ -8,6 +8,12 @@ body{
     margin-right: auto;
     padding: 20px;
     background-color: rgb(43, 42, 41);
-    color: rgb(216, 202, 0);
+    color: white;
     box-shadow: 0px 0px 8px rgba(0,0,0,0.7);
+}
+h1,h2,h3{
+    color: rgb(216, 202, 0);
+}
+a{
+    color: #3AAACF;
 }

@@ -15,7 +15,7 @@ export class UserService {
       return this.http.post(AppConfig.registration,
       {
         id: user.id,
-        login: user.login,
+        userName: user.userName,
         password: user.password,
         eMail: user.eMail,
         about: user.about,
@@ -47,7 +47,7 @@ export class UserService {
     return this.http.post(AppConfig.registration,
       {
         id: user.id,
-        login: user.login,
+        login: user.userName,
         password: user.password,
         eMail: user.eMail,
         about: user.about,

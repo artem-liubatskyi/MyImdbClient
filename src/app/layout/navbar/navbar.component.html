@@ -17,7 +17,7 @@
           <a (click)="logOutClick()">Log out</a>
         </div>
       </li>
-      <div *ngIf="!authService.isAuthenticated()" (click)="singInClicked()" class="nav-item">
+      <div *ngIf="!authService.isAuthenticated()" class="nav-item">
         <a class="nav-link" routerLink="login">Sign In</a>
       </div>
     </ul>

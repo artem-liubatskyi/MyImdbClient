@@ -21,7 +21,7 @@
         {{movie.description}}
       </div>
     </li>
-    <li><b>Budget: </b> <span style="color: white">{{movie.budget}}</span>$</li>
+    <li *ngIf="movie.budget"><b>Budget: </b> <span style="color: white">{{movie.budget}}</span>$</li>
     <app-rate [movieId]="movie.id" [rate]="movie.usersRate"></app-rate>
     <app-add-to-watchlist [exist]="movie.isInWatchlist" [movieId]="movie.id">
     </app-add-to-watchlist>

@@ -15,7 +15,7 @@ export class AuthenticationService {
         let currentUser = JSON.parse(localStorage.getItem(AppConfig.user));
         if (currentUser == null)
             return false;
-        return !this.jwtHelper.isTokenExpired(currentUser.token);
+        return true;
     }
     user(): User {
         return JSON.parse(localStorage.getItem(AppConfig.user));
@@ -23,14 +23,31 @@ export class AuthenticationService {
     login(login: string, password: string): Observable<User> {
         return this.http.post<User>(AppConfig.authentication, { login: login, password: password })
             .pipe(map((user: User) => {
-                if (user && user.token) {
+                if (user && user.accessToken) {
                     localStorage.setItem(AppConfig.user, JSON.stringify(user));
                 }
                 return user;
             }));
     }
-
     logout() {
         localStorage.removeItem(AppConfig.user);
+    }
+    refreshToken(): Observable<User> {
+
+        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+        return this.http.post<User>(AppConfig.refresh, { 'token': currentUser.accessToken, 'refreshToken': currentUser.refreshToken })
+            .pipe(
+                map(user => {
+                    return user;
+                }));
+    }
+
+    getAuthToken(): string {
+        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+        if (currentUser != null) {
+            return currentUser.accessToken;
+        }
     }
 }
