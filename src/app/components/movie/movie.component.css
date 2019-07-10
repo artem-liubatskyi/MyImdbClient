@@ -1,3 +1,20 @@
+.main-content
+{
+    position: relative;
+    height: 410px;
+}
+.main-content iframe {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  max-width: 100%; /* not to stand out from div */
+  max-height: 100%; /* not to stand out from div */
+  margin-left: auto;
+  margin-top: auto;
+  margin-bottom: 0;
+  margin-right: 0
+}
 .description{
     color: white !important;
     margin-bottom: 5px;
@@ -8,9 +25,6 @@ h1{
 
 ul{
     padding-left: 0px;
-}
-.title_wrapper{
-    display: inline-block;
 }
 .detail{
     display: inline-block
@@ -23,33 +37,46 @@ ul{
 }
 .rating-wrapper
 {
-    float: right;
-    position: relative;
-    margin-left: 5px;
-    width: 185px;
-    z-index: 2;
+    position: absolute;
+  top: 0;
+  right: 0;
+  max-width: 100%; /* not to stand out from div */
+  max-height: 100%; /* not to stand out from div */
+  margin-left: 0;
 }
 .full-img {  
     width: 275px;
+    margin-left: 0;
+    margin-top: auto;
+    margin-bottom: 0;
+    margin-right: 22px;
+}
+.full-img img{
+    width: 270px;
     height: 410px;
-    overflow: hidden;
-    float: left;
-    margin-right: 24px;
-    margin-bottom: 20px;
 }
-
-.full-img img {
-    width: 265px;
+.title_block h1{
+    font-size: 1.6vw !important;
 }
-
-.full-title {
-    font-size: 28px;
-    font-weight: bold;
-    line-height: 33px;
-    padding-bottom: 12px;
-    margin-left: 297px;
+.mini
+{
+    display: inline-block;
+    font-size: 8px;
 }
-
+.rate-desc
+  {
+      display: inline-block;
+      margin-left: 5px;
+      font-weight: bold;
+  }
+.title_block {
+  position: absolute;
+  top: 0;
+  max-width: 100%; /* not to stand out from div */
+  max-height: 100%; /* not to stand out from div */
+  margin-left: 300px;
+  margin-right: 50px;
+}
 .full-title h3 {
     font-size: 28px;
 }

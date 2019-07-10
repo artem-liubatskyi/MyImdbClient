@@ -1,8 +1,8 @@
 <div *ngIf="authService.isAuthenticated()">
     <div *ngIf="exist">
-        <button (click)="onClick()">Remove</button>
+        <div class="main" (click)="onClick()"><i class="fa fa-bookmark"></i></div>
     </div>
     <div *ngIf="!exist">
-        <button (click)="onClick()">Add</button>
+        <div class="main" (click)="onClick()"><i class="fa fa-plus-square"></i></div>
     </div>
 </div>

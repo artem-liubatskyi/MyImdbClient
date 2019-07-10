@@ -1,5 +1,6 @@
 table {
     counter-reset: 1;
+    color: rgb(216, 202, 0);
   }
   table td{
     vertical-align: middle;

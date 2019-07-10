@@ -1,7 +1,67 @@
 <div *ngIf="authService.isAuthenticated()">
-    <select *ngIf="!loading" (change)="onChange()" [(ngModel)]="rate">
-        <option *ngFor="let rank of [0,1,2,3,4,5,6,7,8,9,10]">{{rank}}</option>
-    </select>
-    <img style="width: 60px; height: 50px;" *ngIf="loading"
-        src="https://i.pinimg.com/originals/76/77/ed/7677edd5a44b10130b8824ca020ba60b.gif" />
+    <div class="dropdown">
+        <label><i class="rating__icon fa fa-star"></i></label>
+        <span class="rate-desc">{{rate}}</span>
+        <div class="dropdown-content" id="full-stars-example">
+            <div class="rating-group">
+                <input (change)="onChange(0)" [checked]="rate === 0" class="rating__input rating__input--none"
+                    name="rating {{movieId}}" id="rating-none {{movieId}}" value="0" type="radio">
+                <label attr.aria-label="No rating {{movieId}}" class="rating__label" for="rating-none {{movieId}}"><i
+                        class="rating__icon rating__icon--none fa fa-ban"></i></label>
+
+                <label attr.aria-label="1 star {{movieId}}" class="rating__label" for="rating-1 {{movieId}}"><i
+                        class="rating__icon rating__icon--star fa fa-star"></i></label>
+                <input (change)="onChange(1)" [checked]="rate === 1" class="rating__input" name="rating {{movieId}}"
+                    id="rating-1 {{movieId}}" value="1" type="radio">
+
+                <label attr.aria-label="2 stars {{movieId}}" class="rating__label" for="rating-2 {{movieId}}"><i
+                        class="rating__icon rating__icon--star fa fa-star"></i></label>
+                <input (change)="onChange(2)" [checked]="rate === 2" class="rating__input" name="rating {{movieId}}"
+                    id="rating-2 {{movieId}}" value="2" type="radio">
+
+                <label attr.aria-label="3 stars {{movieId}}" class="rating__label" for="rating-3 {{movieId}}"><i
+                        class="rating__icon rating__icon--star fa fa-star"></i></label>
+                <input (change)="onChange(3)" [checked]="rate === 3" class="rating__input" name="rating {{movieId}}"
+                    id="rating-3 {{movieId}}" value="3" type="radio">
+
+                <label attr.aria-label="4 stars {{movieId}}" class="rating__label" for="rating-4 {{movieId}}"><i
+                        class="rating__icon rating__icon--star fa fa-star"></i></label>
+                <input (change)="onChange(4)" [checked]="rate === 4" class="rating__input" name="rating {{movieId}}"
+                    id="rating-4 {{movieId}}" value="4" type="radio">
+
+                <label attr.aria-label="5 stars {{movieId}}" class="rating__label" for="rating-5 {{movieId}}"><i
+                        class="rating__icon rating__icon--star fa fa-star"></i></label>
+                <input (change)="onChange(5)" [checked]="rate === 5" class="rating__input" name="rating {{movieId}}"
+                    id="rating-5 {{movieId}}" value="5" type="radio">
+
+                <label attr.aria-label="6 stars {{movieId}}" class="rating__label" for="rating-6 {{movieId}}"><i
+                        class="rating__icon rating__icon--star fa fa-star"></i></label>
+                <input (change)="onChange(6)" [checked]="rate === 6" class="rating__input" name="rating {{movieId}}"
+                    id="rating-6 {{movieId}}" value="6" type="radio">
+
+                <label attr.aria-label="7 stars {{movieId}}" class="rating__label" for="rating-7 {{movieId}}"><i
+                        class="rating__icon rating__icon--star fa fa-star"></i></label>
+                <input (change)="onChange(7)" [checked]="rate === 7" class="rating__input" name="rating {{movieId}}"
+                    id="rating-7 {{movieId}}" value="7" type="radio">
+
+                <label attr.aria-label="8 stars {{movieId}}" class="rating__label" for="rating-8 {{movieId}}"><i
+                        class="rating__icon rating__icon--star fa fa-star"></i></label>
+                <input (change)="onChange(8)" [checked]="rate === 8" class="rating__input" name="rating {{movieId}}"
+                    id="rating-8 {{movieId}}" value="8" type="radio">
+
+                <label attr.aria-label="9 stars {{movieId}}" class="rating__label" for="rating-9 {{movieId}}"><i
+                        class="rating__icon rating__icon--star fa fa-star"></i></label>
+                <input (change)="onChange(9)" [checked]="rate === 9" class="rating__input" name="rating {{movieId}}"
+                    id="rating-9 {{movieId}}" value="9" type="radio">
+
+                <label attr.aria-label="10 stars {{movieId}}" class="rating__label" for="rating-10 {{movieId}}"><i
+                        class="rating__icon rating__icon--star fa fa-star"></i></label>
+                <input (change)="onChange(10)" [checked]="rate === 10" class="rating__input" name="rating {{movieId}}"
+                    id="rating-10 {{movieId}}" value="10" type="radio">
+
+            </div>
+            <img style="width: 60px; height: 50px;" *ngIf="loading"
+                src="https://i.pinimg.com/originals/76/77/ed/7677edd5a44b10130b8824ca020ba60b.gif" />
+        </div>
+    </div>
 </div>

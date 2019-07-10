@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpSentEvent, HttpHeaderResponse, HttpProgressEvent, HttpResponse, HttpUserEvent, HttpErrorResponse } from '@angular/common/http';
+import { HttpRequest, HttpHandler, HttpInterceptor, HttpSentEvent, HttpHeaderResponse, HttpProgressEvent, HttpResponse, HttpUserEvent, HttpErrorResponse } from '@angular/common/http';
 import { Observable, BehaviorSubject, throwError } from 'rxjs';
 import { AuthenticationService } from '../services/authentication-service';
 import { catchError, switchMap, finalize, filter, take } from 'rxjs/operators';
-import { User } from '../models/user';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
@@ -42,7 +41,7 @@ export class JwtInterceptor implements HttpInterceptor {
 
             this.tokenSubject.next(null);
 
-            return this.authService.refreshToken()
+        return this.authService.refreshToken()
                 .pipe(
                     switchMap(user => {
                         if (user) {

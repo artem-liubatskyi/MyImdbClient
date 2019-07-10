@@ -22,6 +22,7 @@ import { CommonModule } from '@angular/common';
 import { RestorePasswordComponent } from '../components/restore-password/restore-password.component';
 import { ForgotPasswordComponent } from '../components/forgot-password/forgot-password.component';
 import { AppRoutingModule } from '../routing/app-routing.module';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 export function tokenGetter() {
   let currentUser = JSON.parse(localStorage.getItem(AppConfig.user));
@@ -51,6 +52,7 @@ export function tokenGetter() {
     HttpClientModule,
     MovieModule,
     NgbModule,
+    AngularFontAwesomeModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter

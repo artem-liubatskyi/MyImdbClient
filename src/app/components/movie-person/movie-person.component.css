@@ -46,9 +46,15 @@
 .full-items {
     font-size: 15px;
     color: white;
-    padding-bottom: 22px;
-    float: left;
-    width: 523px;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    max-width: 100%; 
+    max-height: 100%;
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: 0;
+    margin-right: 0
 }
 
 .full-items li {

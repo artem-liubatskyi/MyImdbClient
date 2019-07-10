@@ -2,14 +2,20 @@ a{
     color: darkgreen
 }
 .button {
-    background-color:transparent;
-    color:  rgb(216, 202, 0);;
+    background-color:rgb(216, 202, 0);
+    color:  rgb(43, 42, 41);
     border: 2px solid  rgb(216, 202, 0);
     border-radius: 6px;
     margin: 5px;
     height: 38px;
     font-weight: 600;
-  }
+}
+.button:hover
+{
+    background-color:transparent;
+    color:  rgb(216, 202, 0);
+    border: 2px solid  rgb(216, 202, 0);
+}
 .search-result-item
 {
     height: 65px;

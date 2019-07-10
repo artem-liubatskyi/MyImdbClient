@@ -1,20 +1,26 @@
 <div class="content-wrapper" *ngIf="movie">
-  <div class="full-img">
-    <img src="{{movie.imageUrl}}">
-  </div>
-  <div class="title_block">
-    <div class="title_wrapper">
-      <h1 class="">{{movie.title}} ({{movie.year}})</h1>
+  <div class="main-content">
+    <div class="full-img">
+      <img src="{{movie.imageUrl}}">
     </div>
-    <div class="description">
-      {{movie.runtime}}
-      | <span *ngFor="let country of movie.countries">{{country}}</span>
-      | <span *ngFor="let genre of movie.genres">{{genre}}</span>
+    <div class="title_block">
+        <h1 class="">{{movie.title}} ({{movie.year}})</h1>
+      
+        {{movie.runtime}}
+        | <span *ngFor="let country of movie.countries">{{country}}</span>
+        | <span *ngFor="let genre of movie.genres">{{genre}}</span>
+      
     </div>
+    <div class="rating-wrapper">
+        <div class="rate-desc" >{{movie.averageRate}}<div class="mini">/10</div></div>
+        <app-rate [movieId]="movie.id" [rate]="movie.usersRate"></app-rate>
+        <app-add-to-watchlist [exist]="movie.isInWatchlist" [movieId]="movie.id">
+        </app-add-to-watchlist>
+    </div>
+    <iframe width="560" height="315" [src]='trailerUrl()' frameborder="0" allow="autoplay; encrypted-media"
+      allowfullscreen>
+    </iframe>
   </div>
-  <iframe width="560" height="315" [src]='trailerUrl()' frameborder="0" allow="autoplay; encrypted-media"
-    allowfullscreen>
-  </iframe>
   <ul class="full-items">
     <li>
       <div class="short-text">
@@ -22,9 +28,6 @@
       </div>
     </li>
     <li *ngIf="movie.budget"><b>Budget: </b> <span style="color: white">{{movie.budget}}</span>$</li>
-    <app-rate [movieId]="movie.id" [rate]="movie.usersRate"></app-rate>
-    <app-add-to-watchlist [exist]="movie.isInWatchlist" [movieId]="movie.id">
-    </app-add-to-watchlist>
     <li><b>Directors:</b>
       <a *ngFor="let director of movie.directors" [routerLink]="[ '/person', director.id ]">
         <b>{{director.fullName}}</b>

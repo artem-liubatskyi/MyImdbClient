@@ -16,10 +16,12 @@ export class RateComponent implements OnInit {
   constructor(private movieService: MoviesService, private authService: AuthenticationService) { }
 
   ngOnInit() {
-
+    if (this.rate == null)
+      this.rate = 0;
   }
-  onChange() {
+  onChange(num: number) {
     this.loading = true;
+    this.rate = num;
     this.movieService.addRate(this.movieId, this.rate).pipe(first())
       .subscribe(
         data => {
