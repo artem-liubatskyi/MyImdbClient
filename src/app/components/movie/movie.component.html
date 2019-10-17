@@ -4,18 +4,19 @@
       <img src="{{movie.imageUrl}}">
     </div>
     <div class="title_block">
-        <h1 class="">{{movie.title}} ({{movie.year}})</h1>
-      
-        {{movie.runtime}}
-        | <span *ngFor="let country of movie.countries">{{country}}</span>
-        | <span *ngFor="let genre of movie.genres">{{genre}}</span>
-      
+      <h1 class="">{{movie.title}} ({{movie.year}})</h1>
+
+      {{movie.runtime}}
+      | <span *ngFor="let country of movie.countries">{{country}}</span>
+      | <span *ngFor="let genre of movie.genres">{{genre}}</span>
+
     </div>
     <div class="rating-wrapper">
-        <div class="rate-desc" >{{movie.averageRate}}<div class="mini">/10</div></div>
-        <app-rate [movieId]="movie.id" [rate]="movie.usersRate"></app-rate>
-        <app-add-to-watchlist [exist]="movie.isInWatchlist" [movieId]="movie.id">
-        </app-add-to-watchlist>
+      <div class="rate-desc">{{movie.averageRate}}<div class="mini">/10</div>
+      </div>
+      <app-rate [movieId]="movie.id" [rate]="movie.usersRate"></app-rate>
+      <app-add-to-watchlist [exist]="movie.isInWatchlist" [movieId]="movie.id">
+      </app-add-to-watchlist>
     </div>
     <iframe width="560" height="315" [src]='trailerUrl()' frameborder="0" allow="autoplay; encrypted-media"
       allowfullscreen>
@@ -33,10 +34,22 @@
         <b>{{director.fullName}}</b>
       </a>
     </li>
-    <li><b>Stars:</b>
-      <a *ngFor="let star of movie.stars" [routerLink]="[ '/person', star.id ]">
-        <b>{{star.fullName}}</b>
-      </a>
-    </li>
   </ul>
+  <b>Cast:</b>
+  <div class="cast-card" *ngFor="let star of movie.stars | slice:0:10">
+    <img *ngIf="star.imageUrl!=null" class="cast-img" src="{{star.imageUrl}}" 
+    onerror="https://m.media-amazon.com/images/G/01/imdb/images/nopicture/medium/name-2135195744._CB470041852_.png">
+    <img *ngIf="star.imageUrl==null" class="cast-img" 
+    src="https://m.media-amazon.com/images/G/01/imdb/images/nopicture/medium/name-2135195744._CB470041852_.png" >
+    <a [routerLink]="[ '/person', star.id ]">
+      <b class="cast-name">{{star.fullName}}</b>
+    </a>
+    <div class="cast-character">{{star.character}}</div>
+  </div>
+  <app-add-review [movieId]="movie.id"></app-add-review>
+  <div *ngIf="movie.reviews.length!=0" ><b>Reviews:</b>
+    <div *ngFor="let review of movie.reviews">
+      <app-review [review]="review"></app-review>
+    </div>
+  </div>
 </div>

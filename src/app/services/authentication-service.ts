@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map, switchMap, catchError, finalize } from 'rxjs/operators';
 import { AppConfig } from '../config/config';
 import { User } from '../models/user';
 import { Observable } from 'rxjs';
@@ -13,9 +13,34 @@ export class AuthenticationService {
 
     public isAuthenticated(): boolean {
         let currentUser = JSON.parse(localStorage.getItem(AppConfig.user));
+        
         if (currentUser == null)
             return false;
+        else {
+            if (this.jwtHelper.isTokenExpired(currentUser.accessToken))
+                return this.refresh();
+        }
         return true;
+    }
+    refresh(): boolean {
+
+        let flag = true;
+        this.refreshToken()
+            .pipe(
+                switchMap((user: User) => {
+                    if (user) {
+                        localStorage.setItem('currentUser', JSON.stringify(user));
+                    }
+
+                    return <any>user;
+                }),
+                catchError(err => {
+                    flag = false;
+                    return <any>null;
+                })
+            );
+        return flag;
+
     }
     user(): User {
         return JSON.parse(localStorage.getItem(AppConfig.user));

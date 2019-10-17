@@ -3,4 +3,5 @@ export class Person {
     year: number;
     fullName: string;
     imageUrl: string;
+    charater: string;
 }

@@ -5,14 +5,14 @@ import { UserFull } from '../models/user-full';
 import { Observable } from 'rxjs';
 import { RegistrationFormData } from '../models/registration-form-data';
 import { UserPage } from '../models/user-page';
+import { EditUser } from '../models/edit-user';
 
 @Injectable()
 export class UserService {
 
-  constructor(private http:  HttpClient) 
-  { }
-  register(user: UserFull){
-      return this.http.post(AppConfig.registration,
+  constructor(private http: HttpClient) { }
+  register(user: UserFull) {
+    return this.http.post(AppConfig.registration,
       {
         id: user.id,
         userName: user.userName,
@@ -25,36 +25,38 @@ export class UserService {
         countryId: user.countryId
       })
   }
-  getRegistrationFormData() : Observable<RegistrationFormData>{
-      return this.http.get<RegistrationFormData>(AppConfig.registrationFormData);
+  getUser() {
+    return this.http.get<EditUser>(AppConfig.getUserForEdit);
   }
-  getUserPage() :Observable<UserPage>{
-        return this.http.get<UserPage>(AppConfig.userPage);
+  getRegistrationFormData(): Observable<RegistrationFormData> {
+    return this.http.get<RegistrationFormData>(AppConfig.registrationFormData);
   }
-  restorePassword(hash: string, newPassword: string ) 
-  {
+  getUserPage(): Observable<UserPage> {
+    return this.http.get<UserPage>(AppConfig.userPage);
+  }
+  restorePassword(hash: string, newPassword: string) {
     return this.http.post(AppConfig.restorePassword,
       {
-        newPassword:newPassword,
+        newPassword: newPassword,
         passwordHash: hash
       })
   }
-  restorePasswordRequest(email:string) {
+  restorePasswordRequest(email: string) {
     return this.http.post(AppConfig.restorePasswordRequest, email);
-}
-  update(user: UserFull)
-  {
-    return this.http.post(AppConfig.registration,
+  }
+  update(user: EditUser) {
+    return this.http.post(AppConfig.updateUser,
       {
         id: user.id,
-        login: user.userName,
+        userName: user.userName,
+        oldPassword: user.oldPassword,
         password: user.password,
-        eMail: user.eMail,
-        about: user.about,
+        email: user.email,
+        biography: user.biography,
         fullName: user.fullName,
         dateOfBirth: user.dateOfBirth,
         genderId: user.genderId,
         countryId: user.countryId
       })
-}
+  }
 }

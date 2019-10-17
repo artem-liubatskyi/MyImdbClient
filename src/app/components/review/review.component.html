@@ -1,0 +1,8 @@
+<div *ngIf="review" class="wrapper">
+  <div class="user-name">{{review.userName}}</div>
+  <div class="content">{{review.text}}</div>
+  <div class="thumb" (click)="likeClick(true)" [ngClass]="{ 'likes': review.likedByCurrentUser }">{{review.likesCount}}<i class="fa fa-thumbs-up"></i></div>
+  <div class="thumb" (click)="likeClick(false)" 
+  [ngClass]="{ 'dislikes': review.likedByCurrentUser == false}">{{review.dislikesCount}}<i class="fa fa-thumbs-down"></i></div>
+  <div class="date">{{review.added}}</div>
+</div>

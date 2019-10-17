@@ -21,10 +21,15 @@ export class AppConfig {
     public static readonly restorePasswordRequest = AppConfig.apiPath + 'account/restore-password-request';
     public static readonly restorePassword = AppConfig.apiPath + 'account/restore-password';
     public static readonly refresh = AppConfig.apiPath + 'account/refresh';
+    public static readonly addReview = AppConfig.apiPath + 'movies/add-review';
+    public static readonly addLike = AppConfig.apiPath + 'movies/like';
+    public static readonly getUserForEdit = AppConfig.apiPath + 'account/user';
+    public static readonly updateUser = AppConfig.apiPath + 'account/update-user';
     public static readonly user = 'currentUser';
     public static readonly unauthorizedUrl = 'login';
     
     private _config: { [key: string]: string };
+  
 
     constructor() {
         this._config = {

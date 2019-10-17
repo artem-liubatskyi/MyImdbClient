@@ -1,0 +1,25 @@
+.user-name{
+
+}
+.content{
+
+}
+.thumb{
+    display: inline-block;
+    margin-right: 10px;
+    letter-spacing: 2px;
+}
+.likes{
+    cursor: pointer;
+    color: red;
+    font-weight: bold;
+}
+.dislikes{
+    cursor: pointer;
+    color:blue;
+    font-weight: bold;
+    padding-left: 7px;
+}
+.date{
+    font-size: 10px;
+}

@@ -1,0 +1,15 @@
+<div *ngIf="authService.isAuthenticated()">
+  <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <textarea class="form-control" formControlName="text" placeholder="Add review..."
+        [ngClass]="{ 'is-invalid': submitted && f.text.errors }"></textarea>
+      <div *ngIf="submitted && f.text.errors" class="invalid-feedback">
+        <div *ngIf="f.text.errors.required">Can't add empty review</div>
+        <div *ngIf="f.text.errors.minlength">Review must be at least 20 characters</div>
+      </div>
+      <div *ngIf="status && status == true">Review added</div>
+      <div class="invalid-feedback" *ngIf="status && status == false">Something went wrong</div>
+      <button class="button">Add</button>
+    </div>
+  </form>
+</div>
