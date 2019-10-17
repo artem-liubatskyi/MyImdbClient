@@ -9,16 +9,15 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 @Injectable()
 export class AuthenticationService {
 
-    constructor(private http: HttpClient, private jwtHelper: JwtHelperService) { }
+    constructor(private http: HttpClient, ) { }
 
     public isAuthenticated(): boolean {
-        let currentUser = JSON.parse(localStorage.getItem(AppConfig.user));
-        
-        if (currentUser == null)
+        const currentUser = JSON.parse(localStorage.getItem(AppConfig.user));
+
+        if (currentUser == null) {
             return false;
-        else {
-            if (this.jwtHelper.isTokenExpired(currentUser.accessToken))
-                return this.refresh();
+        } else {
+            return this.refresh();
         }
         return true;
     }
@@ -32,11 +31,11 @@ export class AuthenticationService {
                         localStorage.setItem('currentUser', JSON.stringify(user));
                     }
 
-                    return <any>user;
+                    return user as any;
                 }),
                 catchError(err => {
                     flag = false;
-                    return <any>null;
+                    return null as any;
                 })
             );
         return flag;
@@ -46,7 +45,7 @@ export class AuthenticationService {
         return JSON.parse(localStorage.getItem(AppConfig.user));
     }
     login(login: string, password: string): Observable<User> {
-        return this.http.post<User>(AppConfig.authentication, { login: login, password: password })
+        return this.http.post<User>(AppConfig.authentication, { login, password })
             .pipe(map((user: User) => {
                 if (user && user.accessToken) {
                     localStorage.setItem(AppConfig.user, JSON.stringify(user));
@@ -59,9 +58,9 @@ export class AuthenticationService {
     }
     refreshToken(): Observable<User> {
 
-        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
-        return this.http.post<User>(AppConfig.refresh, { 'token': currentUser.accessToken, 'refreshToken': currentUser.refreshToken })
+        return this.http.post<User>(AppConfig.refresh, { token: currentUser.accessToken, refreshToken: currentUser.refreshToken })
             .pipe(
                 map(user => {
                     return user;
@@ -69,7 +68,7 @@ export class AuthenticationService {
     }
 
     getAuthToken(): string {
-        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
         if (currentUser != null) {
             return currentUser.accessToken;

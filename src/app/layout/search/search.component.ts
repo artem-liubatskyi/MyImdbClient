@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MoviesService } from 'src/app/services/movies.service';
 import { FormControl } from '@angular/forms';
 import { MovieList } from 'src/app/models/movie-list';
-import { AuthenticationService } from 'src/app/services/authentication-service';
-import { Observable, interval } from 'rxjs';
+import { Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
 
 @Component({
@@ -17,7 +16,7 @@ export class SearchComponent {
   movies: MovieList[];
   findControl = new FormControl();
 
-  constructor(private moviesService: MoviesService, private authService: AuthenticationService) { }
+  constructor(private moviesService: MoviesService) { }
 
   onChange() {
     this.loading = true;
@@ -31,7 +30,7 @@ export class SearchComponent {
         });
   }
   ngOnInit() {
-    this.findControl.valueChanges.subscribe(data=>this.onChange());
+    this.findControl.valueChanges.subscribe(data => this.onChange());
   }
   submit() {
     this.findControl.setValue("");

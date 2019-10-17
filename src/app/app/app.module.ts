@@ -1,7 +1,7 @@
-import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
-import { NgModule }       from '@angular/core';
-import { BrowserModule }  from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule }    from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MoviesService } from '../services/movies.service';
 import { AppComponent } from './app.component';
 import { MovieModule } from '../components/movie.module';
@@ -23,12 +23,14 @@ import { RestorePasswordComponent } from '../components/restore-password/restore
 import { ForgotPasswordComponent } from '../components/forgot-password/forgot-password.component';
 import { AppRoutingModule } from '../routing/app-routing.module';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { LayoutModule } from '../layout/layout.module';
 
 export function tokenGetter() {
-  let currentUser = JSON.parse(localStorage.getItem(AppConfig.user));
-        if(currentUser==null)
-            return false;
-       return currentUser.token;     
+  const currentUser = JSON.parse(localStorage.getItem(AppConfig.user));
+  if (currentUser == null) {
+    return false;
+  }
+  return currentUser.token;
 }
 
 @NgModule({
@@ -51,25 +53,26 @@ export function tokenGetter() {
     AppRoutingModule,
     HttpClientModule,
     MovieModule,
+    LayoutModule,
     NgbModule,
     AngularFontAwesomeModule,
     JwtModule.forRoot({
       config: {
-        tokenGetter: tokenGetter
+        tokenGetter
       }
     }),
   ],
   providers: [
     AuthGuard,
-    AuthenticationService, 
+    AuthenticationService,
     UserService,
     MoviesService,
-  { 
-    provide: HTTP_INTERCEPTORS, 
-    useClass: JwtInterceptor, 
-    multi: true 
-  },
-],
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    },
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

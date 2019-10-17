@@ -14,8 +14,8 @@ import { AddReviewComponent } from './add-review/add-review.component';
 
 @NgModule({
   declarations: [
-    MovieComponent, 
-    MovieTopComponent, 
+    MovieComponent,
+    MovieTopComponent,
     MoviePersonComponent,
     RateComponent,
     AddToWatchlistComponent,
@@ -28,7 +28,7 @@ import { AddReviewComponent } from './add-review/add-review.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  exports:[
+  exports: [
     RateComponent,
     AddToWatchlistComponent
   ],

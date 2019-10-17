@@ -5,11 +5,11 @@ import { SearchResultComponent } from './search-result/search-result.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
-  declarations: [NavbarComponent],
   imports: [
     CommonModule,
     SearchComponent,
-    SearchResultComponent
+    SearchResultComponent,
+    NavbarComponent
   ]
 })
 export class LayoutModule { }
